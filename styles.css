@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.bg-dark {
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+.nav-item, .nav-link {
+  color: white !important;
+}
+.navbar-toggler {
+  background-color: blue !important;
+  /*background-color: white !important;*/
+}
+.navbar-dark, .navbar-toggler {
+  color: black !important;
+  border-color: black !important;
+}
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E);
+}
+.nav-link:hover {
+  color: blue !important;
+}
+.active .nav-link {
+  /*color: black !important;*/
+  border: 1px solid black;
+  padding-left: 2px;
+  padding-right: 2px;
+  display: inline-block;
+}
+
+body {
+  text-align: center;
+}
+
+h1, #intro, form, input {
+  margin: 10px;
+}
+
+
+
+#pokemonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.pokemonListElem {
+  display: inline;
+  background-color: red;
+  padding: 0 10px;
+}

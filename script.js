@@ -1,3 +1,16 @@
+const convertName = function (s) {
+  if (typeof(s) !== "string") {
+    return "";
+  }
+  let temp = s.charAt(0).toUpperCase() + s.slice(1);
+  let slashIndex = temp.search("-");
+  while (slashIndex !== -1) {
+    //temp.replace("-", "0");
+    temp = temp.slice(0, slashIndex) + " " + temp.charAt(slashIndex + 1).toUpperCase() + temp.slice(slashIndex + 2);
+    slashIndex = temp.search("-");
+  }
+  return temp;
+}
 const API_URL = "https://pokeapi.co/api/v2/";
 document.getElementById("indexButton").addEventListener("click", function(event) {
   event.preventDefault();
@@ -8,7 +21,7 @@ document.getElementById("indexButton").addEventListener("click", function(event)
   console.log(startIndex, endIndex);
 
   console.log("type of " + typeof(startIndex));
-  results = "";
+  let results = "";
   if (isNaN(startIndex) || isNaN(endIndex)) {
     results = "<p>Sorry, those index numbers are invalid."
     results += " They are not actually numbers.</p>";
@@ -37,7 +50,19 @@ document.getElementById("indexButton").addEventListener("click", function(event)
       return response.json();
     }).then(function(json) {
       console.log(json);
-      
+      results += "<h2>Pokémon List</h2>";
+      results += '<div id="pokemonGrid">';
+      for (let i = 0; i < json.results.length; i++) {
+        results += '<div class="pokemonListElem">';
+        let tempName = json.results[i].name;
+        results += "<p>Pokémon name: " + convertName(tempName);
+        results += "</p><p>API name: '" + tempName + "' API index number: ";
+        results += String(i + startIndex + 1) + "<p>";
+        results += "</div>";
+      }
+
+      results += "</div>"
+      document.getElementById("pokemonList").innerHTML = results;
     }).catch(function (error) {
       console.log("Error: " + error.message);
     });
