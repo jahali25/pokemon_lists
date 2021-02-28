@@ -27,7 +27,7 @@ document.getElementById("indexButton").addEventListener("click", function(event)
     results += " They are not actually numbers.</p>";
     document.getElementById("pokemonList").innerHTML = results;
     return;
-  } else if ( startIndex < 0 || endIndex < -1) {
+  } else if ( startIndex < 1 || endIndex < -1) {
     results = "<p>Sorry, those index numbers are invalid."
     results += "These numbers are too small.</p>";
     document.getElementById("pokemonList").innerHTML = results;
@@ -44,7 +44,7 @@ document.getElementById("indexButton").addEventListener("click", function(event)
   } else {
     limit = endIndex - startIndex + 1;
   }
-  const url = API_URL + "pokemon?limit=" + limit + "&offset=" + startIndex;
+  const url = API_URL + "pokemon?limit=" + limit + "&offset=" + (startIndex - 1);
   fetch(url)
     .then(function (response) {
       return response.json();
@@ -55,9 +55,9 @@ document.getElementById("indexButton").addEventListener("click", function(event)
       for (let i = 0; i < json.results.length; i++) {
         results += '<div class="pokemonListElem">';
         let tempName = json.results[i].name;
-        results += "<p>Pokémon name: " + convertName(tempName);
-        results += "</p><p>API name: '" + tempName + "' API index number: ";
-        results += String(i + startIndex + 1) + "<p>";
+        results += "<p>Pokémon name: <div class = 'pokemonName'>" + convertName(tempName);
+        results += "</div></p><p>API name: '" + tempName + "' API index number: ";
+        results += String(i + startIndex) + "<p>";
         results += "</div>";
       }
 
